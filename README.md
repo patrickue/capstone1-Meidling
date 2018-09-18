@@ -6,3 +6,5 @@
 @Wayne (from Patrickue) Yes, we can!
 
 Nataliia Test with GitBash
+
+Test git conflicts
