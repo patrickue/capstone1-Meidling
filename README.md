@@ -1,3 +1,6 @@
-# capstone1-TheProject
+# capstone1-Meidling
 
-Some very basic structure to get started with the game.
+**TODO** We really need to have some documentation here.
+
+@Wayne: Can you see that?
+@Lyuba: Please add the Ball as a view. :P
