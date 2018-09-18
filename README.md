@@ -2,8 +2,7 @@
 
 **TODO** We really need to have some documentation here.
 
-@Wayne: Can you see that?
-@Lyuba: Please add the Ball as a view. :P
 @Everyone: Can you see this? (From: Wayne)
+@Wayne (from Patrickue) Yes, we can!
 
 Nataliia Test with GitBash
