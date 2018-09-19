@@ -13,13 +13,13 @@ public class BrickView extends AbstractView {
 	public void update() {
 
 		display.background(150);
-		display.fill(0);
+		// display.fill(0);
 		for (int i = 15; i <= 450; i = i + 35) {
 			for (int j = 10; j <= 180; j = j + 15) {
+				display.fill(0); // I want to change the colors, but I don't know how to make it RNG-based
 				display.rect(i, j, 30, 10); // PosX, PosY, Size, Size
 				display.redraw();
 			}
 		}
 	}
-
-};
+}
