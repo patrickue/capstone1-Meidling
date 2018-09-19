@@ -8,3 +8,7 @@
 Nataliia Test with GitBash
 
 Test git conflicts
+
+**CHANGELOG**
+added new class BrickView
+changed game resolution to 480*640
