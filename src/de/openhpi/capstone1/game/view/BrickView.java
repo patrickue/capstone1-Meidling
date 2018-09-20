@@ -12,7 +12,7 @@ public class BrickView extends AbstractView {
 	@Override
 	public void update() {
 
-		display.background(150);
+		//display.background(150);
 		// display.fill(0);
 		for (int i = 15; i <= 450; i = i + 35) {
 			for (int j = 10; j <= 180; j = j + 15) {
