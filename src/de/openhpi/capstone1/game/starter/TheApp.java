@@ -36,12 +36,12 @@ public class TheApp extends PApplet {
 
 	}
 
-	// Add further user interaction as necessary
-	@Override
-	public void mouseClicked() {
-		ballView.update();
-
-	}
+//	// Add further user interaction as necessary
+//	@Override
+//	public void mouseClicked() {
+//		ballView.update();
+//
+//	}
 
 
 }
