@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class BallView extends AbstractView {
 	// protected PApplet display;
 	int rad = 25; // radius of the ball
-	float xpos = 200, ypos = 119; // Starting position of shape
+	float xpos = 200, ypos = 220; // Starting position of shape
 
 	float xspeed = 6; // Speed of the shape
 	float yspeed = 6; // Speed of the shape
@@ -31,9 +31,10 @@ public class BallView extends AbstractView {
 			ydirection *= -1;
 		}
 		
-		//Comment next 3 lines, so that the ball can dissappear through the bottom	        
-		if (ypos > display.height - rad) {// if the ball reaches the bottom of the screen, then bounce
-			ydirection *= -1;
+	        
+		if (ypos > display.height + rad) {// if the ball is out, then generate a new ball
+            xpos=display.random(0, display.width);
+            ypos=220;
 		}
 		display.ellipse(xpos, ypos, rad, rad);
 	};
