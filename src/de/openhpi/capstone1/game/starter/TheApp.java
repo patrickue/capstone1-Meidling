@@ -65,14 +65,40 @@ public class TheApp extends PApplet {
 		if (ypos < rad) {// if the ball reaches top of the screen, then bounce
 			ydirection *= -1;
 		}
-		if ((ypos > paddleY - rad && (xpos >= paddleX && xpos <= paddleX + paddleWidth)) && ypos < paddleY) {
+	
+		//collision if the ball if flying from the top onto the paddle
+		if (ypos+rad > paddleY && ypos < paddleY && xpos >= paddleX && xpos <= (paddleX + paddleWidth)) 
+		{
 			ydirection *= -1;
+			ypos = paddleY-rad;
 		}
-		if ((xpos > paddleX - rad && (ypos >= paddleY && ypos <= paddleY + paddleHeight))
-				&& (xpos < paddleX + paddleWidth + rad)) { // if the ball reaches left or right paddle side, then bounce
-			xdirection *= -1;
+		
+		// if the ball reaches left or right paddle side, then bounces
+		if(ypos >= paddleY && ypos <= paddleY + paddleHeight)
+		{
+			//the ball is on the same height as the paddle
+			//check if it is a collision
+			if (xpos+rad > paddleX && xpos-rad < paddleX + paddleWidth) { 
+				xdirection *= -1;
+				
+				//if it is a collision, check if on the right
+				int distToRightPaddleEdge = (int)abs((paddleX+paddleWidth) - (xpos-rad));
+				int distToLeftPaddleEdge = (int)abs(xpos+rad-paddleX);
+				if(distToLeftPaddleEdge < distToRightPaddleEdge)
+				{
+					//reset the ball to the left edge to be sure it's not INSIDE the paddle
+					xpos = paddleX-rad;
+				}
+				else 
+				{
+					//reset the ball to the right edge to be sure it's not INSIDE the paddle
+					xpos = paddleX+paddleWidth+rad;
+				}
+			}
 		}
-		if (ypos > height + rad) {// if the ball is out, then generate a new ball
+		
+		// if the ball is out, then generate a new ball
+		if (ypos > height + rad) {
 			xpos = random(0, width);
 			ypos = 220;
 			fill(random(255), random(255), random(255));
