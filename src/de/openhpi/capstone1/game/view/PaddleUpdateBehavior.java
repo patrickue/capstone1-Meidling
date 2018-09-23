@@ -2,7 +2,7 @@ package de.openhpi.capstone1.game.view;
 
 import processing.core.PApplet;
 
-public class PaddleView implements AbstractView {
+public class PaddleUpdateBehavior extends UpdateBehavior {
 	protected PApplet display;
 	int dragX;
 
@@ -11,9 +11,9 @@ public class PaddleView implements AbstractView {
 	int paddleWidth = 100;
 	int paddleHeight = 25;
 
-	public PaddleView(PApplet display) {
-		//super(display);
-		this.display = display;
+	public PaddleUpdateBehavior(PApplet display) {
+		super(display);
+		//this.display = display;
 	}
 
 	@Override

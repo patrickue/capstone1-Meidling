@@ -2,26 +2,26 @@ package de.openhpi.capstone1.game.view;
 
 import processing.core.PApplet;
 
-public class BallView implements AbstractView {
-	protected PApplet display;
+public class BallBounceBehavior extends UpdateBehavior {
+//	protected PApplet display;
 	int rad = 25; // radius of the ball
 	float xpos = 200, ypos = 220; // Starting position of shape
 
 	float xspeed = 6; // Speed of the shape
 	float yspeed = 6; // Speed of the shape
 
-	int xdirection = -1; // Left to Right
+	int xdirection = 1; // Left to Right
 	int ydirection = 1; // Top to Bottom
 
-	public BallView(PApplet display) {
-		//super(display);
-		this.display = display;
+	public BallBounceBehavior(PApplet display) {
+		super(display);
+		//this.display = display;
 	}
 
 	@Override
 	public void update() {
 		display.ellipseMode(display.RADIUS);
-		display.fill(153, 0, 153); // lila color
+		display.fill(0, 0, 0); // lila color
 	
 		xpos = xpos + (xspeed * xdirection);
 		ypos = ypos + (yspeed * ydirection);
