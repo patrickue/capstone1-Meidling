@@ -2,14 +2,12 @@ package de.openhpi.capstone1.game.starter;
 
 import de.openhpi.capstone1.game.view.AbstractView;
 import de.openhpi.capstone1.game.view.BallView;
-import de.openhpi.capstone1.game.view.BrickView;
 import de.openhpi.capstone1.game.view.PaddleView;
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
 	private AbstractView ballView;
-	private AbstractView brickView;
 	private AbstractView paddleView;
 	int rad = 25; // radius of the ball
 	float xpos = 200, ypos = 119; // Starting position of shape
@@ -37,7 +35,7 @@ public class TheApp extends PApplet {
 		fill(153, 0, 153);// lila color
 		ellipseMode(RADIUS);
 		//ballView = new BallView(this);
-		brickView = new BrickView(this);
+
 		//paddleView = new PaddleView(this);
 	}
 

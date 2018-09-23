@@ -2,8 +2,8 @@ package de.openhpi.capstone1.game.view;
 
 import processing.core.PApplet;
 
-public class BallView extends AbstractView {
-	// protected PApplet display;
+public class BallView implements AbstractView {
+	protected PApplet display;
 	int rad = 25; // radius of the ball
 	float xpos = 200, ypos = 220; // Starting position of shape
 
@@ -14,7 +14,8 @@ public class BallView extends AbstractView {
 	int ydirection = 1; // Top to Bottom
 
 	public BallView(PApplet display) {
-		super(display);
+		//super(display);
+		this.display = display;
 	}
 
 	@Override
