@@ -1,42 +1,36 @@
 package de.openhpi.capstone1.game.view;
 
+import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import processing.core.PApplet;
 
 public class BallBounceBehavior extends UpdateBehavior {
-//	protected PApplet display;
-	int rad = 25; // radius of the ball
-	float xpos = 200, ypos = 220; // Starting position of shape
-
-	float xspeed = 6; // Speed of the shape
-	float yspeed = 6; // Speed of the shape
-
-	int xdirection = 1; // Left to Right
-	int ydirection = 1; // Top to Bottom
-
-	public BallBounceBehavior(PApplet display) {
-		super(display);
-		//this.display = display;
+	
+	public BallBounceBehavior(PApplet display, InteractiveComponent ic) {
+		super(display, ic);
+		update();
 	}
 
 	@Override
-	public void update() {
-		display.ellipseMode(display.RADIUS);
-		display.fill(0, 0, 0); // lila color
-	
-		xpos = xpos + (xspeed * xdirection);
-		ypos = ypos + (yspeed * ydirection);
-		if (xpos > display.width - rad || xpos < rad) { // if the ball reaches left or right screen side, then bounce
-			xdirection *= -1;
+	//public void update( float xpos, float ypos) {
+	public void update( ) {
+		ic.xpos = ic.xpos + (ic.xspeed * ic.xdirection);
+		ic.ypos = ic.ypos + (ic.yspeed * ic.ydirection);
+			if (ic.xpos > display.width - ic.rad || ic.xpos < ic.rad) { // if the ball reaches left or right screen side, then bounce
+				ic.xdirection *= -1;
 		}
-		if (ypos < rad) {// if the ball reaches top of the screen, then bounce
-			ydirection *= -1;
+		if (ic.ypos < ic.rad) {// if the ball reaches top of the screen, then bounce
+			ic.ydirection *= -1;
 		}
-		
 	        
-		if (ypos > display.height + rad) {// if the ball is out, then generate a new ball
-            xpos=display.random(0, display.width);
-            ypos=220;
+		if (ic.ypos > display.height + ic.rad) {// if the ball is out, then generate a new ball
+			ic.xpos=display.random(0, display.width);
+			display.fill(display.random(255),display.random(255), display.random(255));
+			ic.ypos=220;
 		}
-		display.ellipse(xpos, ypos, rad, rad);
+		display.ellipse(ic.xpos,ic.ypos, ic.rad, ic.rad);
+
 	};
+	
+	
+
 }

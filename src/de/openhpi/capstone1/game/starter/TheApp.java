@@ -1,31 +1,14 @@
 package de.openhpi.capstone1.game.starter;
 
-import de.openhpi.capstone1.game.view.UpdateBehavior;
 import de.openhpi.capstone1.game.builder.Ball;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.view.BallBounceBehavior;
-import de.openhpi.capstone1.game.view.PaddleUpdateBehavior;
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
-	private UpdateBehavior ballView;
-	private UpdateBehavior paddleView;
-	private InteractiveComponent test;
-	int rad = 25; // radius of the ball
-	float xpos = 200, ypos = 119; // Starting position of shape
-
-	float xspeed = 6; // Speed of the shape
-	float yspeed = 6; // Speed of the shape
-
-	int xdirection = 1; // Left to Right
-	int ydirection = 1; // Top to Bottom
-	int dragX = 190;
-
-	int paddleX = 190;
-	int paddleY = 580;
-	int paddleWidth = 100;
-	int paddleHeight = 25;
+	private BallBounceBehavior ballView;
+	private InteractiveComponent ball;
 
 	@Override
 	public void settings() {
@@ -37,15 +20,15 @@ public class TheApp extends PApplet {
 		frameRate(30);
 		fill(153, 0, 153);// lila color
 		ellipseMode(RADIUS);
-		ballView = new BallBounceBehavior(this);
-		paddleView = new PaddleUpdateBehavior(this);
-		test =new Ball(this);
+
+		ball =new Ball(this);
+		ballView = new BallBounceBehavior(this, ball);
 	}
 
 	@Override
 	public void draw() { // draw() loops forever, until stopped
-		background(204);
-		test.update();
+		background(255);
+		ball.updatePosition();
 		// ballView.update();
 		// brickView.update();
 		// paddleView.update();
@@ -112,11 +95,11 @@ public class TheApp extends PApplet {
 
 	}
 
-//	// Add further user interaction as necessary
-//	@Override
-//	public void mouseClicked() {
-//		ballView.update();
-//
-//	}
+	// Add further user interaction as necessary
+	@Override
+	public void mouseClicked() {
+		ball.updatePosition();
+
+	}
 
 }
