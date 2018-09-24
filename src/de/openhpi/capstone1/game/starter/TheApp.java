@@ -2,13 +2,17 @@ package de.openhpi.capstone1.game.starter;
 
 import de.openhpi.capstone1.game.builder.Ball;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
+import de.openhpi.capstone1.game.builder.Paddle;
 import de.openhpi.capstone1.game.view.BallBounceBehavior;
+import de.openhpi.capstone1.game.view.PaddleDragBehavior;
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
 	private BallBounceBehavior ballView;
 	private InteractiveComponent ball;
+	private PaddleDragBehavior paddleView;
+	private InteractiveComponent paddle;
 
 	@Override
 	public void settings() {
@@ -23,12 +27,17 @@ public class TheApp extends PApplet {
 
 		ball =new Ball(this);
 		ballView = new BallBounceBehavior(this, ball);
+		
+		paddle =new Paddle(this);
+		paddleView = new PaddleDragBehavior(this, paddle);
 	}
 
 	@Override
 	public void draw() { // draw() loops forever, until stopped
 		background(255);
 		ball.updatePosition();
+		paddle.setXpos(mouseX);
+		paddle.updatePosition();
 		// ballView.update();
 		// brickView.update();
 		// paddleView.update();
@@ -99,7 +108,7 @@ public class TheApp extends PApplet {
 	@Override
 	public void mouseClicked() {
 		ball.updatePosition();
-
+		paddle.updatePosition();
 	}
 
 }
