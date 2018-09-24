@@ -3,12 +3,15 @@ package de.openhpi.capstone1.game.starter;
 import de.openhpi.capstone1.game.builder.Ball;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.Paddle;
-
+import de.openhpi.capstone1.game.view.BallBounceBehavior;
+import de.openhpi.capstone1.game.view.PaddleDragBehavior;
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
+	private BallBounceBehavior ballView;
 	private InteractiveComponent ball;
+	private PaddleDragBehavior paddleView;
 	private InteractiveComponent paddle;
 
 	@Override
@@ -23,7 +26,10 @@ public class TheApp extends PApplet {
 		ellipseMode(RADIUS);
 
 		ball =new Ball(this);
+		ballView = new BallBounceBehavior(this, ball);
+		
 		paddle =new Paddle(this);
+		paddleView = new PaddleDragBehavior(this, paddle);
 	}
 
 	@Override
