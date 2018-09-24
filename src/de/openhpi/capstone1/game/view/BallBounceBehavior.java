@@ -13,9 +13,17 @@ public class BallBounceBehavior extends UpdateBehavior {
 	@Override
 	//public void update( float xpos, float ypos) {
 	public void update( ) {
-		ic.xpos = ic.xpos + (ic.xspeed * ic.xdirection);
-		ic.ypos = ic.ypos + (ic.yspeed * ic.ydirection);
-			if (ic.xpos > display.width - ic.rad || ic.xpos < ic.rad) { // if the ball reaches left or right screen side, then bounce
+//		int rad=ic.getRad();
+//		float xpos=ic.getXpos();
+//		float ypos=ic.getYpos();
+//		float speed=ic.getSpeed();
+//		int xdirection=ic.getXdirection();
+//		int ydirection=ic.getYdirection();
+
+		
+		ic.xpos = ic.xpos + (ic.speed * ic.xdirection);
+		ic.ypos = ic.ypos + (ic.speed * ic.ydirection);
+			if (ic.xpos > display.width - ic.rad ||ic.xpos < ic.rad) { // if the ball reaches left or right screen side, then bounce
 				ic.xdirection *= -1;
 		}
 		if (ic.ypos < ic.rad) {// if the ball reaches top of the screen, then bounce
