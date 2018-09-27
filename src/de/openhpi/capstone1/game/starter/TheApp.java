@@ -26,10 +26,10 @@ public class TheApp extends PApplet {
 		ellipseMode(RADIUS);
 
 		ball =new Ball(this);
-		ballView = new BallBounceBehavior(this, ball);
+//		ballView = new BallBounceBehavior(this, ball);
 		
 		paddle =new Paddle(this);
-		paddleView = new PaddleDragBehavior(this, paddle);
+//		paddleView = new PaddleDragBehavior(this, paddle);
 	}
 
 	@Override
