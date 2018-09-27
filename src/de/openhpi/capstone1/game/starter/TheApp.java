@@ -26,32 +26,32 @@ public class TheApp extends PApplet {
 	public void draw() { // draw() loops forever, until stopped
 		background(255);
 		ball.updatePosition();
-		paddle.setXpos(mouseX);
 		paddle.updatePosition();
 
+		//In the next piece of code the interaction between ball and paddle is handled
 		// collision if the ball if flying from the top onto the paddle
-		if (ball.ypos + ball.rad > paddle.ypos && ball.ypos < paddle.ypos && ball.xpos >= paddle.xpos
-				&& ball.xpos <= (paddle.xpos + paddle.paddleWidth)) {
-			ball.ydirection *= -1;
-			ball.ypos = paddle.ypos - ball.rad;
+		if (ball.getYpos() + ball.getRad() > paddle.getYpos() && ball.getYpos() < paddle.getYpos() && ball.getXpos() >= paddle.getXpos()
+				&& ball.getXpos() <= (paddle.getXpos() + paddle.getPaddleWidth())) {
+			ball.setYdirection(ball.getYdirection() * -1);
+			ball.setYpos(paddle.getYpos() - ball.getRad());
 		}
 
 		// if the ball reaches left or right paddle side, then bounces
-		if (ball.ypos >= paddle.ypos && ball.ypos <= paddle.ypos + paddle.paddleHeight) {
+		if (ball.getYpos() >= paddle.getYpos() && ball.getYpos() <= paddle.getYpos() + paddle.getPaddleHeight()) {
 			// the ball is on the same height as the paddle
 			// check if it is a collision
-			if (ball.xpos + ball.rad > paddle.xpos && ball.xpos - ball.rad < paddle.xpos + paddle.paddleWidth) {
-				ball.xdirection *= -1;
+			if (ball.getXpos() + ball.getRad() > paddle.getXpos() && ball.getXpos() - ball.getRad() < paddle.getXpos() + paddle.getPaddleWidth()) {
+				ball.setXdirection(ball.getXdirection() * -1);
 
 				// if it is a collision, check if on the right
-				int distToRightPaddleEdge = (int) abs((paddle.xpos + paddle.paddleWidth) - (ball.xpos - ball.rad));
-				int distToLeftPaddleEdge = (int) abs(ball.xpos + ball.rad - paddle.xpos);
+				int distToRightPaddleEdge = (int) abs((paddle.getXpos() + paddle.getPaddleWidth()) - (ball.getXpos() - ball.getRad()));
+				int distToLeftPaddleEdge = (int) abs(ball.getXpos() + ball.getRad() - paddle.getXpos());
 				if (distToLeftPaddleEdge < distToRightPaddleEdge) {
 					// reset the ball to the left edge to be sure it's not INSIDE the paddle
-					ball.xpos = paddle.xpos - ball.rad;
+					ball.setXpos(paddle.getXpos() - ball.getRad());
 				} else {
 					// reset the ball to the right edge to be sure it's not INSIDE the paddle
-					ball.xpos = paddle.xpos + paddle.paddleWidth + ball.rad;
+					ball.setXpos(paddle.getXpos() + paddle.getPaddleWidth() + ball.getRad());
 				}
 			}
 		}
