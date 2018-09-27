@@ -35,17 +35,7 @@ public class TheApp extends PApplet {
 
 		paddleWidth=paddle.rad*4;
 		paddleHeight=paddle.rad;
-		ball.xpos = ball.xpos + (ball.speed * ball.xdirection);
-		ball.ypos = ball.ypos + (ball.speed * ball.ydirection);
-		// // Test to see if the shape exceeds the boundaries of the screen
-		// If it does, reverse its direction by multiplying by -1
-		if (ball.xpos > width - ball.rad || ball.xpos < ball.rad) { // if the ball reaches left or right screen side,
-																	// then bounce
-			ball.xdirection *= -1;
-		}
-		if (ball.ypos < ball.rad) {// if the ball reaches top of the screen, then bounce
-			ball.ydirection *= -1;
-		}
+
 
 		// collision if the ball if flying from the top onto the paddle
 		if (ball.ypos + ball.rad > paddle.ypos && ball.ypos < paddle.ypos && ball.xpos >= paddle.xpos
@@ -74,24 +64,9 @@ public class TheApp extends PApplet {
 			}
 		}
 
-		// if the ball is out, then generate a new ball
-		if (ball.ypos > height + ball.rad) {
-			ball.xpos = random(0, width);
-			ball.ypos = 220;
-			fill(random(255), random(255), random(255));
-		}
-
-		//paddleX = dragX;
-
-		ellipse(ball.xpos, ball.ypos, ball.rad, ball.rad);
+//		ellipse(ball.xpos, ball.ypos, ball.rad, ball.rad);
 
 	}
 
-	// Add further user interaction as necessary
-//	@Override
-//	public void mouseClicked() {
-//		ball.updatePosition();
-//		paddle.updatePosition();
-//	}
 
 }
