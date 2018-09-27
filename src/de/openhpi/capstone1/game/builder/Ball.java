@@ -5,7 +5,11 @@ import de.openhpi.capstone1.game.view.BallBounceBehavior;
 import processing.core.PApplet;
 
 public class Ball extends InteractiveComponent {
-
+	public int rad; // radius of the ball
+	public float speed; // Speed of the shape
+	public int xdirection; // Left to Right
+	public int ydirection; // Top to Bottom
+	
 	public Ball(PApplet display){
 		rad=25; // radius of the ball
 		xpos=200;

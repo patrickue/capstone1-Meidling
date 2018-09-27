@@ -4,10 +4,14 @@ import de.openhpi.capstone1.game.view.PaddleDragBehavior;
 import processing.core.PApplet;
 
 public class Paddle extends InteractiveComponent {
+	public int paddleWidth;
+	public int paddleHeight;
+	
 	public Paddle(PApplet display){
-		rad=25;
 		xpos=200;
 		ypos=580;
+		paddleWidth = 100;
+		paddleHeight = 25;
 		bV=new PaddleDragBehavior(display,this);
 		
 	}

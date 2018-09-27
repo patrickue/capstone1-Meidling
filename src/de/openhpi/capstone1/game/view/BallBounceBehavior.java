@@ -1,12 +1,15 @@
 package de.openhpi.capstone1.game.view;
 
+import de.openhpi.capstone1.game.builder.Ball;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import processing.core.PApplet;
 
 public class BallBounceBehavior extends UpdateBehavior {
+	Ball ic;
 	
-	public BallBounceBehavior(PApplet display, InteractiveComponent ic) {
-		super(display, ic);
+	public BallBounceBehavior(PApplet display, InteractiveComponent ic2) {
+		super(display, ic2);
+		ic=(Ball)ic2;
 		update();
 	}
 
