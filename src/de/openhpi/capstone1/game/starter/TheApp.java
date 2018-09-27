@@ -28,9 +28,10 @@ public class TheApp extends PApplet {
 		ball.updatePosition();
 		paddle.updatePosition();
 
-		//In the next piece of code the interaction between ball and paddle is handled
+		// In the next piece of code the interaction between ball and paddle is handled
 		// collision if the ball if flying from the top onto the paddle
-		if (ball.getYpos() + ball.getRad() > paddle.getYpos() && ball.getYpos() < paddle.getYpos() && ball.getXpos() >= paddle.getXpos()
+		if (ball.getYpos() + ball.getRad() > paddle.getYpos() && ball.getYpos() < paddle.getYpos()
+				&& ball.getXpos() >= paddle.getXpos()
 				&& ball.getXpos() <= (paddle.getXpos() + paddle.getPaddleWidth())) {
 			ball.setYdirection(ball.getYdirection() * -1);
 			ball.setYpos(paddle.getYpos() - ball.getRad());
@@ -40,11 +41,13 @@ public class TheApp extends PApplet {
 		if (ball.getYpos() >= paddle.getYpos() && ball.getYpos() <= paddle.getYpos() + paddle.getPaddleHeight()) {
 			// the ball is on the same height as the paddle
 			// check if it is a collision
-			if (ball.getXpos() + ball.getRad() > paddle.getXpos() && ball.getXpos() - ball.getRad() < paddle.getXpos() + paddle.getPaddleWidth()) {
+			if (ball.getXpos() + ball.getRad() > paddle.getXpos()
+					&& ball.getXpos() - ball.getRad() < paddle.getXpos() + paddle.getPaddleWidth()) {
 				ball.setXdirection(ball.getXdirection() * -1);
 
 				// if it is a collision, check if on the right
-				int distToRightPaddleEdge = (int) abs((paddle.getXpos() + paddle.getPaddleWidth()) - (ball.getXpos() - ball.getRad()));
+				int distToRightPaddleEdge = (int) abs(
+						(paddle.getXpos() + paddle.getPaddleWidth()) - (ball.getXpos() - ball.getRad()));
 				int distToLeftPaddleEdge = (int) abs(ball.getXpos() + ball.getRad() - paddle.getXpos());
 				if (distToLeftPaddleEdge < distToRightPaddleEdge) {
 					// reset the ball to the left edge to be sure it's not INSIDE the paddle
@@ -57,6 +60,5 @@ public class TheApp extends PApplet {
 		}
 
 	}
-
 
 }

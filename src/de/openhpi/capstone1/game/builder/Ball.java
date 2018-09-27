@@ -14,14 +14,14 @@ public class Ball extends InteractiveComponent {
 		rad = 25; // radius of the ball
 		setXpos(200);// Starting x-position of shape
 		setYpos(220); // Starting y-position of shape
-		speed = 6; 
+		speed = 6;
 
 		xdirection = 1; // Direction from Left to Right
 		ydirection = 1; // Direction from Top to Bottom
 		display.ellipseMode(PApplet.RADIUS);
 		bV = new BallBounceBehavior(display, this);
 	}
-	
+
 	public int getRad() {
 		return rad;
 	}
