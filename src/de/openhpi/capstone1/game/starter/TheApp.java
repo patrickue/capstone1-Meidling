@@ -3,16 +3,14 @@ package de.openhpi.capstone1.game.starter;
 import de.openhpi.capstone1.game.builder.Ball;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.Paddle;
-import de.openhpi.capstone1.game.view.BallBounceBehavior;
-import de.openhpi.capstone1.game.view.PaddleDragBehavior;
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
-	private BallBounceBehavior ballView;
 	private InteractiveComponent ball;
-	private PaddleDragBehavior paddleView;
 	private InteractiveComponent paddle;
+	private int paddleWidth;
+	private int paddleHeight;
 
 	@Override
 	public void settings() {
@@ -22,14 +20,10 @@ public class TheApp extends PApplet {
 	@Override
 	public void setup() { // setup() runs once
 		frameRate(30);
-		fill(153, 0, 153);// lila color
-		ellipseMode(RADIUS);
-
-		ball =new Ball(this);
-//		ballView = new BallBounceBehavior(this, ball);
-		
-		paddle =new Paddle(this);
-//		paddleView = new PaddleDragBehavior(this, paddle);
+		fill(153, 0, 153);// initial: lila color
+//		ellipseMode(RADIUS);
+		ball = new Ball(this);
+		paddle = new Paddle(this);
 	}
 
 	@Override
@@ -38,77 +32,66 @@ public class TheApp extends PApplet {
 		ball.updatePosition();
 		paddle.setXpos(mouseX);
 		paddle.updatePosition();
-		// ballView.update();
-		// brickView.update();
-		// paddleView.update();
-//		dragX = mouseX;
-//		rect(paddleX, paddleY, paddleWidth, paddleHeight);
-//
-//		xpos = xpos + (xspeed * xdirection);
-//		ypos = ypos + (yspeed * ydirection);
-//		if (dragX <= 0) { // if the mouse goes beyond the left side of the canvas
-//			dragX = 0; // then set the paddle to the left-most edge of the canvas
-//		} else if (dragX >= width - paddleWidth) { // if the mouse goes beyond the right side of the canvas/
-//			dragX = width - paddleWidth; // then set the paddle to the right-most edge of the canvas
-//		}
-//		// Test to see if the shape exceeds the boundaries of the screen
-//		// If it does, reverse its direction by multiplying by -1
-//		if (xpos > width - rad || xpos < rad) { // if the ball reaches left or right screen side, then bounce
-//			xdirection *= -1;
-//		}
-//		if (ypos < rad) {// if the ball reaches top of the screen, then bounce
-//			ydirection *= -1;
-//		}
-//	
-//		//collision if the ball if flying from the top onto the paddle
-//		if (ypos+rad > paddleY && ypos < paddleY && xpos >= paddleX && xpos <= (paddleX + paddleWidth)) 
-//		{
-//			ydirection *= -1;
-//			ypos = paddleY-rad;
-//		}
-//		
-//		// if the ball reaches left or right paddle side, then bounces
-//		if(ypos >= paddleY && ypos <= paddleY + paddleHeight)
-//		{
-//			//the ball is on the same height as the paddle
-//			//check if it is a collision
-//			if (xpos+rad > paddleX && xpos-rad < paddleX + paddleWidth) { 
-//				xdirection *= -1;
-//				
-//				//if it is a collision, check if on the right
-//				int distToRightPaddleEdge = (int)abs((paddleX+paddleWidth) - (xpos-rad));
-//				int distToLeftPaddleEdge = (int)abs(xpos+rad-paddleX);
-//				if(distToLeftPaddleEdge < distToRightPaddleEdge)
-//				{
-//					//reset the ball to the left edge to be sure it's not INSIDE the paddle
-//					xpos = paddleX-rad;
-//				}
-//				else 
-//				{
-//					//reset the ball to the right edge to be sure it's not INSIDE the paddle
-//					xpos = paddleX+paddleWidth+rad;
-//				}
-//			}
-//		}
-//		
-//		// if the ball is out, then generate a new ball
-//		if (ypos > height + rad) {
-//			xpos = random(0, width);
-//			ypos = 220;
-//			fill(random(255), random(255), random(255));
-//		}
-//		
-//		paddleX = dragX;
-//
-//		ellipse(xpos, ypos, rad, rad);
+
+		paddleWidth=paddle.rad*4;
+		paddleHeight=paddle.rad;
+		ball.xpos = ball.xpos + (ball.speed * ball.xdirection);
+		ball.ypos = ball.ypos + (ball.speed * ball.ydirection);
+		// // Test to see if the shape exceeds the boundaries of the screen
+		// If it does, reverse its direction by multiplying by -1
+		if (ball.xpos > width - ball.rad || ball.xpos < ball.rad) { // if the ball reaches left or right screen side,
+																	// then bounce
+			ball.xdirection *= -1;
+		}
+		if (ball.ypos < ball.rad) {// if the ball reaches top of the screen, then bounce
+			ball.ydirection *= -1;
+		}
+
+		// collision if the ball if flying from the top onto the paddle
+		if (ball.ypos + ball.rad > paddle.ypos && ball.ypos < paddle.ypos && ball.xpos >= paddle.xpos
+				&& ball.xpos <= (paddle.xpos + paddleWidth)) {
+			ball.ydirection *= -1;
+			ball.ypos = paddle.ypos - ball.rad;
+		}
+
+		// if the ball reaches left or right paddle side, then bounces
+		if (ball.ypos >= paddle.ypos && ball.ypos <= paddle.ypos + paddleHeight) {
+			// the ball is on the same height as the paddle
+			// check if it is a collision
+			if (ball.xpos + ball.rad > paddle.xpos && ball.xpos - ball.rad < paddle.xpos + paddleWidth) {
+				ball.xdirection *= -1;
+
+				// if it is a collision, check if on the right
+				int distToRightPaddleEdge = (int) abs((paddle.xpos + paddleWidth) - (ball.xpos - ball.rad));
+				int distToLeftPaddleEdge = (int) abs(ball.xpos + ball.rad - paddle.xpos);
+				if (distToLeftPaddleEdge < distToRightPaddleEdge) {
+					// reset the ball to the left edge to be sure it's not INSIDE the paddle
+					ball.xpos = paddle.xpos - ball.rad;
+				} else {
+					// reset the ball to the right edge to be sure it's not INSIDE the paddle
+					ball.xpos = paddle.xpos + paddleWidth + ball.rad;
+				}
+			}
+		}
+
+		// if the ball is out, then generate a new ball
+		if (ball.ypos > height + ball.rad) {
+			ball.xpos = random(0, width);
+			ball.ypos = 220;
+			fill(random(255), random(255), random(255));
+		}
+
+		//paddleX = dragX;
+
+		ellipse(ball.xpos, ball.ypos, ball.rad, ball.rad);
 
 	}
 
 	// Add further user interaction as necessary
-	@Override
-	public void mouseClicked() {
-		ball.updatePosition();
-		paddle.updatePosition();
-	}
+//	@Override
+//	public void mouseClicked() {
+//		ball.updatePosition();
+//		paddle.updatePosition();
+//	}
 
 }
